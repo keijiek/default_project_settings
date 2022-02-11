@@ -1,6 +1,6 @@
 # #!/bin/sh
 
-function git_setting() {
+git_setting () {
   echo 'node_modules/' > .gitignore
   git init
   git add .
@@ -8,13 +8,30 @@ function git_setting() {
   git branch -M main
 }
 
-function nvm() {
+nodeSetup () {
   echo "lts/gallium" > .nvmrc
-  nvm install
+  # source ~/.nvm/nvm.sh
+  # nvm install
 }
 
-function packageJson() {
+makePackageJson () {
   npm init -y
 }
 
+makeCodeWorkspace () {
+  projectname=basename `pwd`
+  echo '{
+  "folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.tabSize": 2
+	}
+}' > "$projectname/$projectname.code-workspace"
+}
 
+nodeSetup
+makePackageJson
+makeCodeWorkspace
