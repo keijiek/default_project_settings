@@ -15,7 +15,7 @@ echo -e '{
 }' > ./package.json
 
 # webpack.config.json
-echo -e '{
+echo -e "{
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -62,6 +62,6 @@ const config = {
     },
 };
 }
-' > ./webpack.config.json
+" > ./webpack.config.json
 
 # npm i -D webpack webpack-cli webpack-dev-server sass sass-loader css-loader html-webpack-plugin mini-css-extract-plugin terser-webpack-plugin

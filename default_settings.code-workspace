@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.tabSize": 2,
+		"files.exclude": {
+			"**/package-lock.json": true,
+			"**/node_modules/*/**": true
+		}
+	}
+}
