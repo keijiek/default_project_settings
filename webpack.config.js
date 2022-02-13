@@ -63,7 +63,7 @@ const config = {
   ],
   module: {
     rules: [
-      // tsLoaderSetting,
+      // tsLoaderSetting,// if you use TypeScript, activate this line.
       // babelLoaderSetting,
       sassLoadersSetting,
       assetModuleSetting,
