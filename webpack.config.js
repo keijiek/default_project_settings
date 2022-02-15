@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 // npm script's argument '--mode_env' is received here.
+// 後述の module.exports 内の関数で、この値を参照して処理を分岐させる。
 const isProduction = process.env.NODE_ENV == 'production';
 
 // web-dev-server setting
@@ -41,7 +42,11 @@ const babelLoaderSetting = {
 const sassLoadersSetting = {
   test: /\.s[ac]ss$/i,
   include: path.resolve(__dirname, 'src', 'sass'),
-  use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+  use: [
+    MiniCssExtractPlugin.loader,
+    'css-loader',
+    'sass-loader'
+  ],
 }
 
 // Module: assetModule
@@ -51,6 +56,8 @@ const assetModuleSetting = {
 }
 
 // common config ############
+// config には 'Development' と 'Production' に共通する設定を書く。
+// 後述する module.exports 内の関数にて、この設定オブジェクトに分岐後の新設定を追加する。
 const config = {
   entry: path.resolve(__dirname, 'src', 'index.js'),//'./src/index.js',
   output: {
@@ -63,7 +70,7 @@ const config = {
   ],
   module: {
     rules: [
-      // tsLoaderSetting,// if you use TypeScript, activate this line.
+      // tsLoaderSetting,
       // babelLoaderSetting,
       sassLoadersSetting,
       assetModuleSetting,
@@ -86,16 +93,17 @@ const optimizationSetting = {
   minimizer: [terserPluginSetting],
 }
 
-// finaly, setting is branched by whether Production or Development.
+// finaly, setting is branched by whether 'Production' or 'Development'.
+// 先述の config オブジェクトに、分岐後の設定を追加している。
 module.exports = () => {
-if (isProduction) {
-  config.mode = 'production';
-  config.optimization = optimizationSetting;
-  // you can add another settings for Production.
-} else {
-  config.mode = 'development';
-  config.devtool = 'eval-cheap-module-source-map';// sourcemap. recommended values are: eval, eval-source-map
-  // you can add another settings for Development.
-}
-  return config;
+  if (isProduction) {
+    config.mode = 'production';
+    config.optimization = optimizationSetting;
+    // you can add another settings for Production.
+  } else {
+    config.mode = 'development';
+    config.devtool = 'eval-cheap-module-source-map';// sourcemap. recommended values are: eval, eval-source-map
+    // you can add another settings for Development.
+  }
+    return config;
 };
