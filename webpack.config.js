@@ -30,7 +30,7 @@ const tsLoaderSetting = {
   test: /\.tsx?$/,
   use: 'ts-loader',
   exclude: /node_modules/,
-},
+}
 
 // Module: babel-loader
 const babelLoaderSetting = {
