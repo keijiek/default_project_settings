@@ -62,6 +62,7 @@ const config = {
   entry: path.resolve(__dirname, 'src', 'script', 'index.js'),//'./src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    filename: 'script/main.js'
   },
   devServer: webDevServerSetting,
   plugins: [
