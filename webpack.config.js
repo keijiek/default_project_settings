@@ -21,7 +21,7 @@ const MiniCssExtractPluginSetting = new MiniCssExtractPlugin({
 
 // Plugin: HtmlWebpackplugin setting
 const HtmlWebpackPluginSetting = new HtmlWebpackPlugin({
-  template: './src/index.html',
+  template: './src/index.html',// テンプレートとなる index.html のパス
 });
 
 // Modules ############
@@ -59,7 +59,7 @@ const assetModuleSetting = {
 // config には 'Development' と 'Production' に共通する設定を書く。
 // 後述する module.exports 内の関数にて、この設定オブジェクトに分岐後の新設定を追加する。
 const config = {
-  entry: path.resolve(__dirname, 'src', 'index.js'),//'./src/index.js',
+  entry: path.resolve(__dirname, 'src', 'script', 'index.js'),//'./src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
   },
