@@ -5,7 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 // npm script's argument '--mode_env' is received here.
 // 後述の module.exports 内の関数で、この値を参照して処理を分岐させる。
-const isProduction = process.env.NODE_ENV == 'production';
+const IS_PRODUCTION = process.env.NODE_ENV == 'production';
 
 // web-dev-server setting
 const webDevServerSetting = {
@@ -88,18 +88,16 @@ const terserPluginSetting = new TerserPlugin({
     },
   },
 });
-// optimization setting
-const optimizationSetting = {
-  minimize: true,
-  minimizer: [terserPluginSetting],
-}
 
 // finaly, setting is branched by whether 'Production' or 'Development'.
 // 先述の config オブジェクトに、分岐後の設定を追加している。
 module.exports = () => {
-  if (isProduction) {
+  if (IS_PRODUCTION) {
     config.mode = 'production';
-    config.optimization = optimizationSetting;
+    config.optimization = {
+      minimize: true,
+      minimizer: [terserPluginSetting],
+    }
     // you can add another settings for Production.
   } else {
     config.mode = 'development';
