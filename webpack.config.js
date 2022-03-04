@@ -77,6 +77,9 @@ const config = {
       assetModuleSetting,
     ],
   },
+  resolve: {
+    extensions: ['.ts', '...'],// ... は '.js', '.json', '.wasm' のデフォルト値を指す
+  }
 };
 
 // TerserPlugin setting, for Production, use to delete unnecessary text file and logs.
