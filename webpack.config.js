@@ -10,6 +10,7 @@ const IS_PRODUCTION = process.env.NODE_ENV == 'production';
 // web-dev-server setting
 const webDevServerSetting = {
   open: true,
+  port: 8080,
   host: 'localhost',
 };
 
